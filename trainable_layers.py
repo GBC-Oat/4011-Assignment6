@@ -18,8 +18,12 @@ def define_dense_model_with_hidden_layers(input_length,
 
     model = keras.Sequential()
     # Create the input layer
+    model.add(layers.InputLayer(input_shape=(input_length,)))
     # Create the hidden layers
+    for size, activation_func in zip(hidden_layers_sizes, activation_func_array):
+        model.add(layers.Dense(size, activation=activation_func))
     # Create the output layer
+        model.add(layers.Dense(output_length, activation=output_function))
     return model
 
 
@@ -29,4 +33,6 @@ def set_layers_to_trainable(model, trainable_layer_numbers):
     trainable_layer_numbers: the numbers of the layers to be set to trainable. set the other layers to not trainable
     """
     # Set the layers to trainable or not trainable
+    for i, layer in enumerate(model.layers):
+        layer.trainable = i in trainable_layer_numbers
     return model
