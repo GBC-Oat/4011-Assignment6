@@ -1,8 +1,8 @@
 {
   "tests": [
     {
-      "name": "regression_test.py",
-      "run": "pytest regression_test.py",
+      "name": "trainable_layers_test.py",
+      "run": "pytest trainable_layers_test.py",
       "input": "",
       "output": "",
       "comparison": "exact",
